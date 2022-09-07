@@ -134,12 +134,13 @@ public class HelloController {
 
             qres1.next();
             int count = qres1.getInt(1);
-            if (count == 1) {
+            if (count == 1) {message.setText("Exit Successfull");
                 String query2 = "UPDATE sun_lab_system.sun_lab_access SET outsideDate='" + getdate() + "', outsideTime='" + gettime() + "' WHERE StudentID=" + result + " AND outsideDate IS NULL;";
                 // Statement statement2= connectdb.createStatement();
 
                 int qres2 = statement.executeUpdate(query2);
             } else if (count == 0) { //message.setText(getdateandtime());
+                message.setText("Entry Successfull");
                 String query3 = "INSERT INTO sun_lab_system.sun_lab_access (StudentID, insideDate, outsideDate, insideTime, outsideTime) VALUES ('" + result + "', '" + getdate() + "', NULL, '" + gettime() + "', NULL)";
                 int res = statement.executeUpdate(query3);
 
@@ -166,7 +167,6 @@ public class HelloController {
             if (id.length() == 9 && checkNumeric(id)) {
                 result = Integer.valueOf(id);
                 storeindb(result);
-                message.setText("Valid student ID");
                 return;
             }
 
@@ -178,7 +178,7 @@ public class HelloController {
                     }
                     result = Integer.valueOf(ID);
                     storeindb(result);
-                    message.setText("Valid student ID");
+
                 } else {
                     message.setText("Invalid student ID");
                     return;
