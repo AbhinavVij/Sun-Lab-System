@@ -2,14 +2,20 @@ package com.example.sunlab;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -52,18 +58,15 @@ public class SUNLabRecordController implements Initializable {
     @FXML
     private TextField endTime;
 
-
-
-
-    public String getdateandtime()
-    {
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-        LocalDateTime now = LocalDateTime.now();
-
-        String formattedDateTime = now.format(dtf);
-
-        return formattedDateTime;
+    public void onSignOut(ActionEvent e) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 520, 400);
+        Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
+        stage.setTitle("SUN Lab Access");
+        stage.setScene(scene);
+        stage.show();
     }
+
 
     public void onBrowserClicked() throws SQLException {
 
@@ -231,9 +234,12 @@ public class SUNLabRecordController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
+        String queryi="DELETE FROM sun_lab_system.sun_lab_access WHERE DATEDIFF(CURDATE(),insideDate)>=1826";
+
 
         String query="SELECT * FROM sun_lab_system.sun_lab_access ORDER BY insideDate DESC, insideTime DESC;";
         try {
+            runandprint(queryi);
             runandprint(query);
         } catch (SQLException e) {
             throw new RuntimeException(e);
