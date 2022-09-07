@@ -8,10 +8,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
@@ -57,6 +54,11 @@ public class SUNLabRecordController implements Initializable {
     private TextField startTime;
     @FXML
     private TextField endTime;
+    @FXML
+    private Label selectDateMessage;
+
+    @FXML
+    private Label selectTimeMessage;
 
     public void onSignOut(ActionEvent e) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
@@ -88,13 +90,13 @@ public class SUNLabRecordController implements Initializable {
                          }
                         else
                         {
-                            //please enter start time
+                            selectTimeMessage.setText("please enter start time");
                         }
                     }
                     else {
                         if(endTime.getText().isBlank()==true)
                          {
-                            //please enter end time
+                             selectTimeMessage.setText("please enter end time");
                          }
                         else {
 
@@ -106,7 +108,7 @@ public class SUNLabRecordController implements Initializable {
 
 
                 }
-                else {//please enter start date
+                else { selectDateMessage.setText("please enter start date");
 
                 }
 
@@ -122,7 +124,7 @@ public class SUNLabRecordController implements Initializable {
                     }
                     else if(startTime.getText().isBlank()==true || endTime.getText().isBlank()==true)
                     {
-                        //please complete time
+                        selectTimeMessage.setText("please enter both duration");
                     }
                     else if(startTime.getText().isBlank()==false && endTime.getText().isBlank()==false)
                     {
@@ -152,13 +154,13 @@ public class SUNLabRecordController implements Initializable {
                         }
                         else
                         {
-                            //please enter start time
+                            selectTimeMessage.setText("please enter start time");
                         }
                     }
                     else {
                         if(endTime.getText().isBlank()==true)
                         {
-                            //please enter end time
+                            selectTimeMessage.setText("please enter end time");
                         }
                         else {
 
@@ -170,7 +172,7 @@ public class SUNLabRecordController implements Initializable {
 
 
                 }
-                else {//please enter start date
+                else { selectDateMessage.setText("please enter start date");
 
                 }
 
@@ -187,7 +189,7 @@ public class SUNLabRecordController implements Initializable {
                     }
                     else if(startTime.getText().isBlank()==true || endTime.getText().isBlank()==true)
                     {
-                        //please complete time
+                        selectTimeMessage.setText("please enter both duration");
                     }
                     else if(startTime.getText().isBlank()==false && endTime.getText().isBlank()==false)
                     {
