@@ -68,6 +68,14 @@
                   <Font name="Arial" size="12.0" />
                </font>
             </Label>
+            <Button fx:id="backButton" layoutX="80.0" layoutY="336.0" mnemonicParsing="false" onAction="#onBackButtonClicked" prefHeight="38.0" prefWidth="115.0" style="-fx-background-color: #5A5A5A;" text="Back" textFill="#f5f3f3">
+               <font>
+                  <Font name="Arial Black" size="14.0" />
+               </font>
+               <effect>
+                  <Glow />
+               </effect>
+            </Button>
          </children></AnchorPane>
     </right>
 </BorderPane>
