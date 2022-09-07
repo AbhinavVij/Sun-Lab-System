@@ -239,7 +239,10 @@ public class SUNLabRecordController implements Initializable {
 
         String query="SELECT * FROM sun_lab_system.sun_lab_access ORDER BY insideDate DESC, insideTime DESC;";
         try {
-            runandprint(queryi);
+            DatabaseConnection connectNow= new DatabaseConnection();
+            Connection connectdb=connectNow.getconnected();
+            Statement statement=connectdb.createStatement();
+             statement.executeUpdate(queryi);
             runandprint(query);
         } catch (SQLException e) {
             throw new RuntimeException(e);
